@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrimerWebApi.Common.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,9 @@ namespace PrimerWebApi.BLL
 {
     public interface IUserLogic
     {
+        public void Create(User user)
+        {
+
+        }
     }
 }

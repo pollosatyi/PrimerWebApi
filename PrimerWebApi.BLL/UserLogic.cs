@@ -1,4 +1,5 @@
-﻿using PrimerWebApi.DAL;
+﻿using PrimerWebApi.Common.Users;
+using PrimerWebApi.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,16 @@ namespace PrimerWebApi.BLL
         public UserLogic(IUserRepository userRepository)
         {
             _userRepository = userRepository;
+        }
+
+        public void Create(User user)
+        {
+            var userDb = new User()
+            {
+                name = user.name,
+                lastname = user.lastname
+            };
+            _userRepository.Add(userDb);
         }
     }
 }
