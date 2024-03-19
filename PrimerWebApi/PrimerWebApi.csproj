@@ -15,4 +15,8 @@
     <Folder Include="DAL\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PrimerWebApi.BLL\PrimerWebApi.BLL.csproj" />
+  </ItemGroup>
+
 </Project>
