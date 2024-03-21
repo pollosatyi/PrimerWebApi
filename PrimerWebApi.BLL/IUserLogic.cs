@@ -14,6 +14,6 @@ namespace PrimerWebApi.BLL
 
         }
 
-        public void Get(int id);
+        public User Get(int id);
     }
 }

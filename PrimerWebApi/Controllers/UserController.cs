@@ -22,11 +22,11 @@ namespace PrimerWebApi.Controllers
             _userLogic.Create(user);
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
 
-        public void Get([FromBody] int id)
+        public User Get([FromBody] int id)
         {
-            _userLogic.Get(id);
+           return _userLogic.Get(id);
         }
     }
 }
