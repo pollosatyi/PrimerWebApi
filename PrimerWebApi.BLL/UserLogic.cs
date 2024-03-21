@@ -11,9 +11,15 @@ namespace PrimerWebApi.BLL
     public class UserLogic : IUserLogic
     {
         private IUserRepository _userRepository;
+        private  IUserDataContext _userDataContext;
         public UserLogic(IUserRepository userRepository)
         {
             _userRepository = userRepository;
+        }
+
+        public UserLogic(IUserDataContext userDataContext)
+        {
+            _userDataContext = userDataContext;
         }
 
         public void Create(User user)
@@ -24,6 +30,11 @@ namespace PrimerWebApi.BLL
                 Lastname = user.Lastname
             };
             _userRepository.Add(userDb);
+        }
+
+        public void Get(int id)
+        {
+            _userDataContext.Get(id);
         }
     }
 }

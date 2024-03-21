@@ -5,15 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PrimerWebApi.BLL
+namespace PrimerWebApi.DAL
 {
-    public interface IUserLogic
+    public interface IUserDataContext
     {
-        public void Create(User user)
-        {
-
-        }
-
-        public void Get(int id);
+        public User Get(int id);
     }
 }
