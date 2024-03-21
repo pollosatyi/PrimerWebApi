@@ -24,7 +24,7 @@ namespace PrimerWebApi.Controllers
 
         [HttpGet("{id}")]
 
-        public User Get([FromBody] int id)
+        public User Get( int id)
         {
            return _userLogic.Get(id);
         }
