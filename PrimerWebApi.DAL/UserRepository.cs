@@ -17,7 +17,7 @@ namespace PrimerWebApi.DAL
             // Создание подключения
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string sqlExpression = $"INSERT INTO Users (name,lastname) VALUES('1333','2333')";
+                string sqlExpression = $"INSERT INTO Users (Firstname,Lastname) VALUES({user.Firstname},{user.Lastname})";
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
