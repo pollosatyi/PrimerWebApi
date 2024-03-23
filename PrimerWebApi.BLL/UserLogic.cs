@@ -1,4 +1,5 @@
-﻿using PrimerWebApi.Common.Users;
+﻿using Microsoft.Extensions.Logging;
+using PrimerWebApi.Common.Users;
 using PrimerWebApi.DAL;
 using System;
 using System.Collections.Generic;
@@ -10,16 +11,19 @@ namespace PrimerWebApi.BLL
 {
     public class UserLogic : IUserLogic
     {
-        private IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly ILogger<UserLogic> _logger;
 
-        public UserLogic(IUserRepository userRepository)
+        public UserLogic(IUserRepository userRepository,ILogger<UserLogic>logger)
         {
             _userRepository = userRepository;
+            _logger = logger;
         }
 
         
         public void Create(User user)
         {
+
             var userDb = new User()
             {
                 FirstName = user.FirstName,
@@ -28,7 +32,7 @@ namespace PrimerWebApi.BLL
                 NumberPhone = user.NumberPhone,
                 Age = user.Age
             };
-            _userRepository.Add(userDb);
+            _userRepository.CreateAsync(userDb);
         }
 
         public User Get(int id)
