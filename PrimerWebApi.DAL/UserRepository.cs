@@ -1,21 +1,22 @@
 ﻿using Microsoft.Data.SqlClient;
+using Npgsql;
 using PrimerWebApi.Common.Users;
 
 namespace PrimerWebApi.DAL
 {
     public class UserRepository : IUserRepository
     {
+        private const string connectionString = "Host=localhost;Port=5432;Database=wallet;Username=postgres;Password=1";
+
         public void Add(User user)
         {
-            string connectionString = "Data Source=DESKTOP-M2QA1DM\\SQLEXPRESS;Initial Catalog=walbase;User ID=User;Password=;Encrypt=False;Trusted_Connection=True";
-
             // Создание подключения
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
             {
-                string sqlExpression = $"INSERT INTO Users (Firstname,Lastname) VALUES('{user.Firstname}','{user.Lastname}')";
+                string sqlExpression = $"INSERT INTO public.user(first_name,second_name, middle_name, number_phone, age) VALUES('{user.FirstName}','{user.LastName}','{user.MiddleName}','{user.NumberPhone}','{user.Age}')";
                 connection.Open();
 
-                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                NpgsqlCommand command = new NpgsqlCommand(sqlExpression, connection);
 
                 command.ExecuteNonQuery();
             }
@@ -24,15 +25,14 @@ namespace PrimerWebApi.DAL
         public List<User> Get()
         {
             List<User> users = new List<User>();
-            string connectionString = "Data Source=DESKTOP-M2QA1DM\\SQLEXPRESS;Initial Catalog=walbase;User ID=User;Password=;Encrypt=False;Trusted_Connection=True";
 
             // Создание подключения
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
             {
-                string sqlExpression = $"SELECT * FROM Users";
+                string sqlExpression = $"SELECT * FROM public.user";
                 connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection);
-                SqlDataReader reader = command.ExecuteReader();
+                NpgsqlCommand command = new NpgsqlCommand(sqlExpression, connection);
+                NpgsqlDataReader reader = command.ExecuteReader();
                 if (reader.HasRows)
                 {
                     while (reader.Read())
@@ -40,10 +40,22 @@ namespace PrimerWebApi.DAL
                         object id = reader.GetValue(0);
                         object firstName = reader.GetValue(1);
                         object lastName = reader.GetValue(2);
+                        object middleName= reader.GetValue(3);
+                        object numberPhone= reader.GetValue(4);
+                        object age = reader.GetValue(5);
+                        //object sex= reader.GetValue(6);
+
+                        int.TryParse(id.ToString(), out int IdInt);
+                        int.TryParse(age.ToString(), out int ageInt);
                         users.Add(new User
                         {
-                            Firstname = firstName.ToString(),
-                            Lastname = lastName.ToString()
+                            Id = IdInt,
+                            FirstName = firstName.ToString(),
+                            LastName = lastName.ToString(),
+                            MiddleName = middleName.ToString(),
+                            NumberPhone = numberPhone.ToString(),
+                            Age= ageInt,
+                            
                         });
                     }
                 }

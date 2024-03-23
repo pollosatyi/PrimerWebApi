@@ -22,8 +22,11 @@ namespace PrimerWebApi.BLL
         {
             var userDb = new User()
             {
-                Firstname = user.Firstname,
-                Lastname = user.Lastname
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                MiddleName = user.MiddleName,
+                NumberPhone = user.NumberPhone,
+                Age = user.Age
             };
             _userRepository.Add(userDb);
         }
