@@ -40,9 +40,9 @@ namespace PrimerWebApi.BLL
             return new User();
         }
 
-        public List<User> Get()
-        {
-            return _userRepository.Get();
-        }
+        //public List<User> Get()
+        //{
+        //    return _userRepository.Get();
+        //}
     }
 }

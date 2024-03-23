@@ -22,18 +22,18 @@ namespace PrimerWebApi.Controllers
             _userLogic.Create(user);
         }
 
-        [HttpGet]
+        //[HttpGet]
 
-        public List<User> Get()
-        {
-            return _userLogic.Get();
-        }
+        //public List<User> Get()
+        //{
+        //    return _userLogic.Get();
+        //}
 
-        [HttpGet("{id}")]
+        //[HttpGet("{id}")]
 
-        public User Get( int id)
-        {
-           return _userLogic.Get(id);
-        }
+        //public User Get( int id)
+        //{
+        //   return _userLogic.Get(id);
+        //}
     }
 }

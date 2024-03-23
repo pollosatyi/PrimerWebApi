@@ -10,7 +10,7 @@ namespace PrimerWebApi.BLL
     public interface IUserLogic
     {
         public void Create(User user);
-        public User Get(int id);
-        public List<User> Get();
+        //public User Get(int id);
+        //public List<User> Get();
     }
 }
