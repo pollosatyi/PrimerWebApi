@@ -10,5 +10,6 @@ namespace PrimerWebApi.DAL
     public interface IUserRepository
     {
         public void Add(User user);
+        public List<User> Get();
     }
 }
